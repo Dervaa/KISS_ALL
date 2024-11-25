@@ -1,20 +1,14 @@
-package LAB3.Decorators;
+package LAB3.Encryptors;
 
 import LAB3.Interface.ITextEncryptor;
+import LAB3.Qualifiers.Caesar;
 
-import javax.decorator.Decorator;
-import javax.decorator.Delegate;
 import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 
-@Decorator
+@Caesar
+@Dependent
 public class CaesarEncryptor implements ITextEncryptor {
-
     private final int shift = 3;
-
-    @Inject
-    @Delegate
-    private ITextEncryptor delegate;
 
     @Override
     public String encrypt(String text) {
@@ -26,6 +20,7 @@ public class CaesarEncryptor implements ITextEncryptor {
             }
             result.append(c);
         }
-        return delegate.encrypt(result.toString());
+        return result.toString();
     }
 }
+

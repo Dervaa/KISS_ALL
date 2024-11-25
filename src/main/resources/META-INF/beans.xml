@@ -4,9 +4,7 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="all">
     <decorators>
-<!--        <class>LAB2.Decorators.TwelveHourDecorator</class>-->
-<!--        <class>LAB2.Decorators.MonthNameDecorator</class>-->
-        <class>LAB3.Decorators.CaesarEncryptor</class>
-        <class>LAB3.Decorators.ReversalEncryptor</class>
+        <class>LAB2.Decorators.TwelveHourDecorator</class>
+        <class>LAB2.Decorators.MonthNameDecorator</class>
     </decorators>
 </beans>
