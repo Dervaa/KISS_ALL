@@ -1,10 +1,7 @@
 package LAB3.Util;
 
-import LAB3.Interface.ITextEncryptor;
 import LAB3.Qualifiers.AddedText;
-import LAB3.Qualifiers.Caesar;
 import LAB3.Qualifiers.EncryptedText;
-import LAB3.Qualifiers.Reverse;
 
 import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
@@ -13,23 +10,22 @@ import javax.inject.Inject;
 public class EncryptionService {
 
     @Inject
-    @Caesar
-    private ITextEncryptor caesarEncryptor;
+    private CaesarEncryptor caesarEncryptor;
 
     @Inject
-    @Reverse
-    private ITextEncryptor reverseEncryptor;
+    private ReverseEncryptor reverseEncryptor;
 
     @Inject
     @EncryptedText
-    private Event<String> encryptedTextEvent; // Событие для передачи зашифрованного текста
+    private Event<String> encryptedTextEvent; // Событие для зашифрованного текста
 
     public void encryptText(@Observes @AddedText String text) {
-        // Последовательно применяем шифраторы
-        String encrypted = caesarEncryptor.encrypt(text);  // Шифруем текст шифром Цезаря
-        encrypted = reverseEncryptor.encrypt(encrypted);  // Переворачиваем текст
+        // Применяем шифратор Цезаря
+        String caesarEncrypted = caesarEncryptor.encrypt(text);
+        encryptedTextEvent.fire(caesarEncrypted); // Генерируем событие для вывода после первого этапа
 
-        // Генерируем событие с финальным зашифрованным текстом
-        encryptedTextEvent.fire(encrypted);
+        // Применяем шифратор переворота текста
+        String reverseEncrypted = reverseEncryptor.encrypt(caesarEncrypted);
+        encryptedTextEvent.fire(reverseEncrypted); // Генерируем событие для вывода после второго этапа
     }
 }

@@ -1,13 +1,12 @@
-package LAB3.Encryptors;
+package LAB3.Util;
 
 import LAB3.Interface.ITextEncryptor;
-import LAB3.Qualifiers.Reverse;
 
 import javax.enterprise.context.Dependent;
 
-@Reverse
 @Dependent
-public class ReversalEncryptor implements ITextEncryptor {
+public class ReverseEncryptor implements ITextEncryptor {
+
     @Override
     public String encrypt(String text) {
         return new StringBuilder(text).reverse().toString();

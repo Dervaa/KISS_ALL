@@ -1,13 +1,12 @@
-package LAB3.Encryptors;
+package LAB3.Util;
 
 import LAB3.Interface.ITextEncryptor;
-import LAB3.Qualifiers.Caesar;
 
 import javax.enterprise.context.Dependent;
 
-@Caesar
 @Dependent
 public class CaesarEncryptor implements ITextEncryptor {
+
     private final int shift = 3;
 
     @Override
@@ -23,4 +22,3 @@ public class CaesarEncryptor implements ITextEncryptor {
         return result.toString();
     }
 }
-

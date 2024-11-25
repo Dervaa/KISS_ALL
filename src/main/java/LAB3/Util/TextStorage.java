@@ -7,12 +7,23 @@ import javax.inject.Inject;
 
 public class TextStorage {
 
+    private StringBuilder texts = new StringBuilder(); // Для накопления текста
+
     @Inject
     @AddedText
     private Event<String> textAddedEvent;
 
     public void addText(String text) {
-        System.out.println("Добавление текста: " + text);
-        textAddedEvent.fire(text);
+        if (texts.length() > 0) {
+            texts.append(" "); // Добавляем пробел между текстами
+        }
+        texts.append(text); // Добавляем новый текст к накопленному
+        System.out.println("Текущий текст: " + texts);
+
+        textAddedEvent.fire(texts.toString()); // Генерируем событие с накопленным текстом
+    }
+
+    public String getAccumulatedText() {
+        return texts.toString();
     }
 }
