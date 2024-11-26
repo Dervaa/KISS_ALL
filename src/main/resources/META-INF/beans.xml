@@ -3,8 +3,25 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="all">
+
+    <interceptors>
+        <class>LAB1.Interceptors.TimeProfilerInterceptor</class>
+    </interceptors>
+
+    <alternatives>
+<!--         <class>LAB1.GcdMethods.EuclideanGcd</class>-->
+         <class>LAB1.GcdMethods.PrimeFactorizationGcd</class>
+    </alternatives>
+
     <decorators>
         <class>LAB2.Decorators.TwelveHourDecorator</class>
         <class>LAB2.Decorators.MonthNameDecorator</class>
     </decorators>
 </beans>
+
+
+<!--        @Interceptor must specify at least one interceptor binding-->
+
+<!--        какие могут быть источники проблемы (я записал в бины перехватчик)-->
+
+<!--        Проблема возникает при переносе проекта внутрь другого проекта-->
