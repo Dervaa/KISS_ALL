@@ -1,0 +1,47 @@
+<constraint-mappings xmlns="http://jboss.org/xml/ns/javax/validation/mapping"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd"
+                     version="1.1">
+    <bean class="LAB4.Model.XMLValidatedStation" ignore-annotations="false">
+        <field name="name">
+            <constraint annotation="javax.validation.constraints.NotNull">
+                <message>Название станции не должно быть пустым</message>
+            </constraint>
+            <constraint annotation="javax.validation.constraints.Size">
+                <message>Название станции должно быть от 3 до 50 символов</message>
+                <element name="min">3</element>
+                <element name="max">50</element>
+            </constraint>
+            <constraint annotation="javax.validation.constraints.Pattern">
+                <message>Название станции должно содержать только буквы и пробелы</message>
+                <element name="regexp">^[A-Za-zА-Яа-яЁё\\s]+$</element>
+            </constraint>
+        </field>
+        <field name="stationCode">
+            <constraint annotation="javax.validation.constraints.NotNull">
+                <message>Код станции не должен быть пустым</message>
+            </constraint>
+            <!-- Упростим регулярное выражение -->
+            <constraint annotation="javax.validation.constraints.Pattern">
+                <message>Код станции должен содержать хотя бы 1 букву в начале и 1 цифру</message>
+                <element name="regexp">^^[A-Za-zА-Яа-я][A-Za-zА-Яа-я0-9-_\.]{1,19}$</element>  <!-- Обязательные буквы и цифры -->
+            </constraint>
+        </field>
+        <field name="numberOfPlatforms">
+            <constraint annotation="javax.validation.constraints.Min">
+                <message>Минимальное количество платформ — 1</message>
+                <element name="value">1</element>
+            </constraint>
+            <constraint annotation="javax.validation.constraints.Max">
+                <message>Максимальное количество платформ — 10</message>
+                <element name="value">10</element>
+            </constraint>
+        </field>
+        <field name="platformCapacity">
+            <constraint annotation="javax.validation.constraints.Min">
+                <message>Вместимость платформы не может быть отрицательной</message>
+                <element name="value">0</element>
+            </constraint>
+        </field>
+    </bean>
+</constraint-mappings>
